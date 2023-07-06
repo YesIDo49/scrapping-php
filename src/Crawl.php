@@ -21,7 +21,7 @@ class Crawl
 
         //get script with the json of the pokedex
         $crawler = $crawler->filter('head > script')->last();
-        
+
         //remove "dexSettings = " in order to get the json
         $json = str_replace("dexSettings = ", "",$crawler->text());
         $json = json_decode($json, true);
