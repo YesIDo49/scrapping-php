@@ -9,6 +9,9 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class Crawl
 {
+    /**
+     * @return array<int, array<string>>
+     */
     public function getPokemonOU(): array
     {
         $api = new Api();
@@ -18,14 +21,18 @@ class Crawl
 
         //get script with the json of the pokedex
         $crawler = $crawler->filter('head > script')->last();
-
+        
         //remove "dexSettings = " in order to get the json
         $json = str_replace("dexSettings = ", "",$crawler->text());
         $json = json_decode($json, true);
 
-        foreach ($json['injectRpcs'][1][1]['pokemon'] as $pokemon) {
-            if (in_array('OU', $pokemon['formats'])) {
-                $pokemonOU[] = $pokemon['name'];
+        $pokemonList = $json['injectRpcs'][1][1]['pokemon'] ?? [];
+
+        if (is_array($pokemonList)){
+            foreach ($pokemonList as $pokemon) {
+                if (is_array($pokemon) && in_array('OU', $pokemon['formats'])) {
+                    $pokemonOU[] = [(string)$pokemon['name']];
+                }
             }
         }
 
