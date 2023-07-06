@@ -1,6 +1,6 @@
 {
     "name": "yesido49/scrapping-php",
-    "description": "An exercise on scrapping with PHP",
+    "description": "Get Over Used (OU) Pokemon for Pokemon Scarlet/Violet",
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^9.6||^10.2",
+        "phpunit/phpunit": "^9.6",
         "symfony/var-dumper": "^6.3"
     },
     "scripts": {
